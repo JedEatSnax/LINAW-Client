@@ -2,8 +2,9 @@
 
 import * as React from "react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
+import { NavResources } from "@/components/nav-resources"
+import { NavProcurements } from "@/components/nav-procurements"
+import { NavMiscellaneous } from "@/components/nav-miscellaneous"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -13,9 +14,22 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
+import {
+  GalleryVerticalEndIcon,
+  AudioLinesIcon,
+  TerminalIcon,
+  HandCoinsIcon,
+  ShoppingCartIcon,
+  MonitorSmartphoneIcon,
+  HardDriveIcon,
+  KeyboardIcon,
+  DropletsIcon,
+  SaveIcon,
+  UsersIcon,
+  FileIcon,
+  BotMessageSquareIcon,
+} from "lucide-react"
 
-// This is sample data.
 const data = {
   user: {
     name: "shadcn",
@@ -25,41 +39,35 @@ const data = {
   teams: [
     {
       name: "Acme Inc",
-      logo: (
-        <GalleryVerticalEndIcon
-        />
-      ),
+      logo: <GalleryVerticalEndIcon />,
       plan: "Enterprise",
     },
     {
       name: "Acme Corp.",
-      logo: (
-        <AudioLinesIcon
-        />
-      ),
+      logo: <AudioLinesIcon />,
       plan: "Startup",
     },
     {
       name: "Evil Corp.",
-      logo: (
-        <TerminalIcon
-        />
-      ),
+      logo: <TerminalIcon />,
       plan: "Free",
     },
   ],
-  navMain: [
+  procurements: [
     {
-      title: "Playground",
+      title: "Purchases",
       url: "#",
-      icon: (
-        <TerminalSquareIcon
-        />
-      ),
-      isActive: true,
+      icon: <ShoppingCartIcon />,
+      flatItems: [
+        {
+          title: "Create Purchase Request",
+          url: "#",
+          icon: <ShoppingCartIcon />,
+        },
+      ],
       items: [
         {
-          title: "History",
+          title: "Purchase Requests",
           url: "#",
         },
         {
@@ -73,104 +81,75 @@ const data = {
       ],
     },
     {
-      title: "Models",
+      title: "Payables",
       url: "#",
-      icon: (
-        <BotIcon
-        />
-      ),
+      icon: <HandCoinsIcon />,
       items: [
         {
-          title: "Genesis",
+          title: "Inbox",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Bills",
           url: "#",
         },
         {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: (
-        <BookOpenIcon
-        />
-      ),
-      items: [
-        {
-          title: "Introduction",
+          title: "Batch Payments",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Payment History",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon
-        />
-      ),
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
+          title: "Vendor Credits",
           url: "#",
         },
       ],
     },
   ],
-  projects: [
+  resources: [
     {
-      name: "Design Engineering",
+      name: "Assets",
       url: "#",
-      icon: (
-        <FrameIcon
-        />
-      ),
+      icon: <MonitorSmartphoneIcon />,
     },
     {
-      name: "Sales & Marketing",
+      name: "Components",
       url: "#",
-      icon: (
-        <PieChartIcon
-        />
-      ),
+      icon: <HardDriveIcon />,
     },
     {
-      name: "Travel",
+      name: "Peripherals",
       url: "#",
-      icon: (
-        <MapIcon
-        />
-      ),
+      icon: <KeyboardIcon />,
+    },
+    {
+      name: "Consumables",
+      url: "#",
+      icon: <DropletsIcon />,
+    },
+    {
+      name: "Licenses",
+      url: "#",
+      icon: <SaveIcon />,
+    },
+  ],
+  miscellaneous: [
+    {
+      name: "Users",
+      url: "#",
+      icon: <UsersIcon />,
+    },
+    {
+      name: "Files",
+      url: "#",
+      icon: <FileIcon />,
+    },
+    {
+      name: "Chatbot",
+      url: "#",
+      icon: <BotMessageSquareIcon />,
     },
   ],
 }
@@ -182,8 +161,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProcurements procurements={data.procurements} />
+        <NavResources resources={data.resources} />
+        <NavMiscellaneous miscellaneous={data.miscellaneous} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -6,20 +6,24 @@ import ErrorBoundary from "@/components/error-boundary"
 
 const Login = lazy(() => import("@/pages/Login"))
 const Signup = lazy(() => import("@/pages/Signup"))
+const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"))
+const Dashboard = lazy(() => import("@/pages/Dashboard"))
 
 export function App() {
   return (
     <ErrorBoundary>
       <TooltipProvider>
         <Suspense fallback={<Skeleton />}>
-	  <BrowserRouter>
-	    <Routes>
-	      <Route path="/" element={<Navigate to="/login" replace />} />
-              <Route path="/login" element={<Login />} /> 
-	      <Route path="/signup" element={<Signup />} />
-	    </Routes>
-	  </BrowserRouter>
-	</Suspense>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" replace />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </BrowserRouter>
+        </Suspense>
       </TooltipProvider>
     </ErrorBoundary>
   )
